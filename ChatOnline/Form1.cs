@@ -3,6 +3,7 @@ using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
+using static System.Windows.Forms.DataFormats;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 namespace ChatOnline
@@ -15,6 +16,7 @@ namespace ChatOnline
         {
             InitializeComponent();
             login.ButtonClicked += Login_ButtonClicked;
+            login.LoginSuccessClicked += Login_LoginSuccessClicked;
             registration.ButtonClicked += Registration_ButtonClicked;
             registration.ButtonClicked2 += RegistrationConti_ButtonClicked;
             this.BackColor = Color.FromArgb(((int)(((byte)(248)))), ((int)(((byte)(247)))), ((int)(((byte)(248)))));
@@ -38,6 +40,15 @@ namespace ChatOnline
             closeButton.Click += closeButton_Click;
             panel1.Controls.Clear();
             panel1.Controls.Add(login);
+        }
+
+        private void Login_LoginSuccessClicked(object? sender, EventArgs e)
+        {
+            MainUI mainUI = new MainUI(this);
+            mainUI.Show();
+            this.Hide();
+            mainUI.FormClosed += (s, args) => this.Close();
+            mainUI.Show();
         }
 
         private void Registration_ButtonClicked(object? sender, EventArgs e)

@@ -13,6 +13,7 @@ namespace ChatOnline.Others
     public partial class Login : UserControl
     {
         public event EventHandler ButtonClicked;
+        public event EventHandler LoginSuccessClicked;
         public Login()
         {
             InitializeComponent();
@@ -37,7 +38,7 @@ namespace ChatOnline.Others
         }
         private void LoginButton_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Login button clicked!");
+            LoginSuccessClicked?.Invoke(this, EventArgs.Empty);
         }
     }
 }
